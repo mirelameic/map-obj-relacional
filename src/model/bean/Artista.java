@@ -1,14 +1,13 @@
 package model.bean;
-
 import java.sql.Date;
 
 public class Artista{
     private String nome;
     private String descricao;
     private String estiloPrincipal;
-    private String estiloArt;
+    private String periodoArt;
     private String paisOrig;
-    private Date dataNassc;
+    private Date dataNasc;
     private Date dataMorte;
 
     public String getNome(){
@@ -35,12 +34,12 @@ public class Artista{
         this.estiloPrincipal = estiloPrincipal;
     }
 
-    public String getEstiloArt(){
-        return this.estiloArt;
+    public String getPeriodoArt(){
+        return this.periodoArt;
     }
 
-    public void setEstiloArt(String estiloArt){
-        this.estiloArt = estiloArt;
+    public void setPeriodoArt(String estiloArt){
+        this.periodoArt = estiloArt;
     }
 
     public String getPaisOrig(){
@@ -51,12 +50,12 @@ public class Artista{
         this.paisOrig = paisOrig;
     }
 
-    public Date getDataNassc(){
-        return this.dataNassc;
+    public Date getDataNasc(){
+        return this.dataNasc;
     }
 
-    public void setDataNassc(Date dataNassc){
-        this.dataNassc = dataNassc;
+    public void setDataNasc(Date dataNassc){
+        this.dataNasc = dataNassc;
     }
 
     public Date getDataMorte(){

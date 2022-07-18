@@ -1,23 +1,47 @@
 package connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ConnectionBD{
-    Connection conexao = null;
-    private static final String DRIVER = "org.postgresql.Driver";
     private static final String URL = "jdbc:postgresql://localhost:5432/";
+    private static final String dbname = "postgres";
+    private static final String user = "postgres";
+    private static final String password = "gato44";
 
-    public Connection conect(String dbname, String user, String password){
+    public static Connection openConnection(){
         try{
-            Class.forName(DRIVER);
-            conexao = DriverManager.getConnection(URL+dbname, user, password);
+            Connection con = DriverManager.getConnection(URL+dbname, user, password);
             System.out.println("Connection Established");
-            conexao.close();
-        }catch (ClassNotFoundException | SQLException e){
+            return con;
+        }catch (SQLException e){
+            throw new RuntimeException("Exception :(");
+        }
+    }
+
+
+    public static void closeConnection(Connection con){
+        try{
+            if(con != null){
+                con.close();
+                System.out.println("Connection Closed");
+            }
+        }catch (SQLException e){
             System.out.println("Exception :(");
         }
-
-        return conexao;
     }
+
+
+    public static void closeConnection(Connection con, PreparedStatement stmt){
+        closeConnection(con);
+        try{
+            if(stmt != null){
+                stmt.close();
+            }
+        }catch (SQLException e){
+            System.out.println("Exception :(");
+        }
+    }
+
 }
