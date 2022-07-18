@@ -16,7 +16,7 @@ public class ConnectionBD{
             System.out.println("Connection Established");
             return con;
         }catch (SQLException e){
-            throw new RuntimeException("Exception :(");
+            throw new RuntimeException("Exception openConnection");
         }
     }
 
@@ -28,7 +28,7 @@ public class ConnectionBD{
                 System.out.println("Connection Closed");
             }
         }catch (SQLException e){
-            System.out.println("Exception :(");
+            System.out.println("Exception closeConnection1");
         }
     }
 
@@ -40,7 +40,7 @@ public class ConnectionBD{
                 stmt.close();
             }
         }catch (SQLException e){
-            System.out.println("Exception :(");
+            System.out.println("Exception closeConnection2");
         }
     }
 

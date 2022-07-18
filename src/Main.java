@@ -21,5 +21,8 @@ public class Main{
         artista.setDataMorte(Date.valueOf("2015-03-31"));
 
         artistaDAO.insert(artista);
+        artista.setDescricao("nova descricao");
+        artistaDAO.update(artista);
+        //artistaDAO.delete(artista);
     }
 }
