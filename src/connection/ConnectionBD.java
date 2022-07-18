@@ -2,6 +2,7 @@ package connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnectionBD{
@@ -41,6 +42,18 @@ public class ConnectionBD{
             }
         }catch (SQLException e){
             System.out.println("Exception closeConnection2");
+        }
+    }
+
+
+    public static void closeConnection(Connection con, PreparedStatement stmt, ResultSet rs){
+        closeConnection(con, stmt);
+        try{
+            if(rs != null){
+                rs.close();
+            }
+        }catch (SQLException ex){
+            System.out.println("Exception closeConnection3");
         }
     }
 

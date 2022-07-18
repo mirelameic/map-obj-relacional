@@ -1,14 +1,15 @@
 import java.sql.Connection;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import connection.ConnectionBD;
 import model.bean.Artista;
 import model.dao.ArtistaDAO;
 
 public class Main{
     public static void main(String[] args){
-        //Connection connection = ConnectionBD.openConnection();
-        //ConnectionBD.closeConnection(connection);
 
+        /////////////////////////TESTES ARTISTA/////////////////////////
         Artista artista = new Artista();
         ArtistaDAO artistaDAO = new ArtistaDAO();
 
@@ -23,6 +24,12 @@ public class Main{
         artistaDAO.insert(artista);
         artista.setDescricao("nova descricao");
         artistaDAO.update(artista);
-        //artistaDAO.delete(artista);
+        artistaDAO.delete(artista);
+
+        List<Artista> artistasList = new ArrayList<>();
+        artistasList = artistaDAO.read();
+        for(int i = 0; i<artistasList.size(); i++){
+            System.out.println(artistasList.get(i).getNome());
+        }
     }
 }
