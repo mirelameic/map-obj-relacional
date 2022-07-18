@@ -1,12 +1,12 @@
 # Museu - BD2
 
-EP da disciplina Banco de Dados 2
+EP da disciplina Banco de Dados 2: criação de um modelo de Museu, utilizando JDBC e PostgreSQL.
 
 ## Folder Structure
 
 - `src`: códigos fonte Java
 - `lib`: pasta das dependências
-- `lib`: arquivos compilados
+- `bin`: arquivos compilados
 
 ## Project Structure (MVC Pattern)
 
