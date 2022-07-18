@@ -1,4 +1,4 @@
-import Connection.ConnectionBD;
+import connection.ConnectionBD;
 
 public class Main{
     public static void main(String[] args){
