@@ -1,5 +1,4 @@
 package model.bean;
-
 import java.sql.Date;
 
 public class ObjetosArte{
@@ -11,8 +10,32 @@ public class ObjetosArte{
     private String periodoArt;
     private String paisCultura;
     private String estilo;
-    //TIPO TIPO NOT NULL,
-    //STATUS STATUS NOT NULL,
+    private Tipo tipo;
+    private Status status;
+
+    public enum Tipo{
+        PINTURA, ESCULTURA, OUTRO
+    }
+
+    public enum Status{
+        PERMANENTE, EMPRESTADO
+    }
+
+    public Tipo getTipo(){
+        return this.tipo;
+    }
+
+    public void setTipo(Tipo tipo){
+        this.tipo = tipo;
+    }
+
+    public Status getStatus(){
+        return this.status;
+    }
+
+    public void setStatus(Status status){
+        this.status = status;
+    }
 
     public int getNumID(){
         return this.numID;
