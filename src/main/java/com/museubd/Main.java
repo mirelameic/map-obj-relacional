@@ -177,6 +177,9 @@ public class Main{
     }
 
     static void cadastrarArtista(){
+
+        Artista objetoArtista = new Artista();
+
         System.out.println("Cadastro de artista");
         System.out.println("Insira os seguintes dados");
         System.out.println("Nome ");
@@ -209,7 +212,15 @@ public class Main{
         Date dataNascimento = Date.valueOf(dataNasc);
         Date dataMorte = Date.valueOf(dataMort);
 
-        ArtistaDAO.insert(nome, descricao, estiloPrincipal, periodoArte, paisOrigem, dataNascimento, dataMorte);
+        objetoArtista.setNome(nome);
+        objetoArtista.setDescricao(descricao);
+        objetoArtista.setEstiloPrincipal(estiloPrincipal);
+        objetoArtista.setPeriodoArt(periodoArte);
+        objetoArtista.setPaisOrig(paisOrigem);
+        objetoArtista.setDataNasc(dataNascimento);
+        objetoArtista.setDataMorte(dataMorte);
+
+        ArtistaDAO.insert(objetoArtista);
     }
 
     static void listarArtistas(){
@@ -217,6 +228,8 @@ public class Main{
     }
 
     static void alterarArtista(){
+        Artista objetoArtista = new Artista();
+
         System.out.println("Alteração de artista");
         System.out.println("Insira os seguintes dados");
         System.out.println("Artista a ser alterado (nome) ");
@@ -249,20 +262,35 @@ public class Main{
         Date dataNascimento = Date.valueOf(dataNasc);
         Date dataMorte = Date.valueOf(dataMort);
 
-        ArtistaDAO.update(nome, descricao, estiloPrincipal, periodoArte, paisOrigem, dataNascimento, dataMorte);
+        objetoArtista.setNome(nome);
+        objetoArtista.setDescricao(descricao);
+        objetoArtista.setEstiloPrincipal(estiloPrincipal);
+        objetoArtista.setPeriodoArt(periodoArte);
+        objetoArtista.setPaisOrig(paisOrigem);
+        objetoArtista.setDataNasc(dataNascimento);
+        objetoArtista.setDataMorte(dataMorte);
+
+        ArtistaDAO.update(objetoArtista);
     }
 
     static void excluirArtista(){
+        Artista objetoArtista = new Artista();
+
         System.out.println("Exclusão de artista");
         System.out.println("Insira os seguintes dados");
         System.out.println("Artista a ser alterado (nome) ");
         Scanner artista = new Scanner(System.in);
         String nome = artista.next();
 
-        ArtistaDAO.delete(nome);
+        objetoArtista.setNome(nome);
+
+        ArtistaDAO.delete(objetoArtista);
     }
 
     static void cadastrarObjeto(){
+        
+        ObjetosArte objetoObjeto = new ObjetosArte();
+
         System.out.println("Cadastro de objetos de arte");
         System.out.println("Insira os seguintes dados");
         System.out.println("Título ");
@@ -315,7 +343,18 @@ public class Main{
                 break;
         }
 
-        ObjetosArteDAO.insert(titulo, nomeArtista, descricao, anoCriacao, periodoArte, paisCultura, estilo, tp, st, custo);
+        objetoObjeto.setTitulo(titulo);
+        objetoObjeto.setNomeArtista(nomeArtista);
+        objetoObjeto.setDescricao(descricao);
+        objetoObjeto.setAnoCriacao(anoCriacao);
+        objetoObjeto.setPeriodoArt(periodoArte);
+        objetoObjeto.setPaisCultura(paisCultura);
+        objetoObjeto.setEstilo(estilo);
+        objetoObjeto.setTipo(tp);
+        objetoObjeto.setStatus(st);
+        objetoObjeto.setCusto(custo);
+
+        ObjetosArteDAO.insert(objetoObjeto);
     }
 
     static void listarObjetos(){
@@ -323,6 +362,9 @@ public class Main{
     }
 
     static void alterarObjeto(){
+
+        ObjetosArte objetoObjeto = new ObjetosArte();
+
         System.out.println("Alteração de objetos de arte");
         System.out.println("Insira os seguintes dados");
         System.out.println("Id a ser alterado ");
@@ -377,17 +419,33 @@ public class Main{
                 break;
         }
 
-        ObjetosArteDAO.update(id, titulo, nomeArtista, descricao, anoCriacao, periodoArte, paisCultura, estilo, tp, st, custo);
+        objetoObjeto.setTitulo(titulo);
+        objetoObjeto.setNomeArtista(nomeArtista);
+        objetoObjeto.setDescricao(descricao);
+        objetoObjeto.setAnoCriacao(anoCriacao);
+        objetoObjeto.setPeriodoArt(periodoArte);
+        objetoObjeto.setPaisCultura(paisCultura);
+        objetoObjeto.setEstilo(estilo);
+        objetoObjeto.setTipo(tp);
+        objetoObjeto.setStatus(st);
+        objetoObjeto.setCusto(custo);
+
+        ObjetosArteDAO.update(objetoObjeto);
     }
 
     static void excluirObjeto(){
+
+        ObjetosArte objetoObjeto = new ObjetosArte();
+
         System.out.println("Cadastro de objetos de arte");
         System.out.println("Insira os seguintes dados");
         System.out.println("Id do objeto ");
         Scanner objeto = new Scanner(System.in);
         int id = objeto.nextInt();
 
-        ObjetosArteDAO.delete(id);
+        objetoObjeto.setNumID(id);
+
+        ObjetosArteDAO.delete(objetoObjeto);
     }
     
     static void cadastrarPintura(){
