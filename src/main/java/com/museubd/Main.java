@@ -6,8 +6,16 @@ import java.util.Scanner;
 
 import com.museubd.model.bean.Artista;
 import com.museubd.model.bean.ObjetosArte;
+import com.museubd.model.bean.Pinturas;
+import com.museubd.model.bean.Esculturas;
+import com.museubd.model.bean.Emprestados;
+import com.museubd.model.bean.Outros;
 import com.museubd.model.dao.ArtistaDAO;
 import com.museubd.model.dao.ObjetosArteDAO;
+import com.museubd.model.dao.PinturasDAO;
+import com.museubd.model.dao.EsculturasDAO;
+import com.museubd.model.dao.EmprestadosDAO;
+import com.museubd.model.dao.OutrosDAO;
 
 public class Main{
     public static void main(String[] args){
@@ -75,8 +83,33 @@ public class Main{
             System.out.println(objetosArteList.get(i).getTitulo());
         }*/
 
+        /////////////////////////TESTES PINTURAS/////////////////////////
+        Pinturas pintura = new Pinturas();
+        PinturasDAO pinturaDAO = new PinturasDAO();
 
+        pintura.setNum_obj1(1);
+        pintura.setTipoTinta("oleo");
+        pintura.setSuporte("sabe deus");
 
+        //INSERT
+        pinturaDAO.insert(pintura);
+
+        //UPDATE
+        pintura.setTipoTinta("nova tinta");
+        pinturaDAO.update(pintura);
+
+        //DELETE
+        pinturaDAO.delete(pintura);
+
+        //READ
+        List<Pinturas> pinturasList = new ArrayList<>();
+        pinturasList = pinturaDAO.read();
+        for(int i = 0; i<pinturasList.size(); i++){
+            System.out.println(pinturasList.get(i).getTipoTinta());
+            System.out.println(pinturasList.get(i).getSuporte());
+        }
+
+        /*
         Scanner op = new Scanner(System.in);
         int option;
         do {
@@ -199,7 +232,7 @@ public class Main{
         int mesNascimento = artista.nextInt();
         System.out.println("Dia do nascimento ");
         int diaNascimento = artista.nextInt();
-        System.out.println("Ano da nascimento ");
+        System.out.println("Ano da morte ");
         int anoMorte = artista.nextInt();
         System.out.println("Mês da morte ");
         int mesMorte = artista.nextInt();
@@ -250,7 +283,7 @@ public class Main{
         int mesNascimento = artista.nextInt();
         System.out.println("Dia do nascimento ");
         int diaNascimento = artista.nextInt();
-        System.out.println("Ano da nascimento ");
+        System.out.println("Ano da morte ");
         int anoMorte = artista.nextInt();
         System.out.println("Mês da morte ");
         int mesMorte = artista.nextInt();
@@ -387,9 +420,9 @@ public class Main{
         System.out.println("País da cultura ");
         String paisCultura = objeto.next();
         System.out.println("Estilo ");
+        String estilo = objeto.next();
         System.out.println("Custo ");
         double custo = objeto.nextDouble();
-        String estilo = objeto.next();
         System.out.println("Tipo: 1 para pintura, 2 para escultura, 3 para outros ");
         int tipo = objeto.nextInt();
 
@@ -456,6 +489,8 @@ public class Main{
     }
     
     static void cadastrarPintura(){
+        Pinturas objetoPintura = new Pinturas();
+
         System.out.println("Cadastro de pintura");
         System.out.println("Insira os seguintes dados");
         System.out.println("Objeto a que se referencia "); //fk
@@ -465,12 +500,17 @@ public class Main{
         String tipo = pintura.next();
         System.out.println("Suporte ");
         String suporte = pintura.next();
+        pintura.close();
 
-        cadastroPintura(objeto, tipo, suporte);
+        objetoPintura.setNum_obj1(objeto);
+        objetoPintura.setTipoTinta(tipo);
+        objetoPintura.setSuporte(suporte);
+
+        PinturasDAO.insert(objetoPintura);
     }
 
     static void listarPinturas(){
-        listaPinturas();
+        PinturasDAO.read();
     }
 
     static void cadastrarEscultura(){
@@ -486,11 +526,11 @@ public class Main{
         System.out.println("Peso ");
         int peso = escultura.nextInt();
 
-        cadastroEscultura(objeto, material, altura, peso);
+        //cadastroEscultura(objeto, material, altura, peso);
     }
 
     static void listarEsculturas(){
-        listaEsculturas();
+        //listaEsculturas();
     }
 
     static void cadastrarOutro(){
@@ -502,11 +542,11 @@ public class Main{
         System.out.println("Tipo ");
         String tipo = outro.next();
 
-        cadastroOutro(objeto, tipo);
+        //cadastroOutro(objeto, tipo);
     }
 
     static void listarOutros(){
-        listaOutros();
+        //listaOutros();
     }
 
     static void cadastrarEmprestado(){
@@ -536,11 +576,11 @@ public class Main{
         Date dataEmprestimo = Date.valueOf(data1);
         Date dataDevolucao = Date.valueOf(data2);
 
-        cadastroEmprestado(objeto, nomeColecao, dataEmprestimo, dataDevolucao);
+        //cadastroEmprestado(objeto, nomeColecao, dataEmprestimo, dataDevolucao);
     }
 
     static void listarEmprestados(){
-        listaEmprestimos();
+        //listaEmprestimos();
     }
 
     static void cadastrarPermanente(){
@@ -562,11 +602,11 @@ public class Main{
         String data1 = anoAq + traco + mesAq + traco + diaAq;
         Date dataAquisicao = Date.valueOf(data1);
 
-        cadastroEmprestado(objeto, emExposicao, dataAquisicao);
+        //cadastroEmprestado(objeto, emExposicao, dataAquisicao);
     }
 
     static void listarPermanentes(){
-        listaPermanentes();
+        //listaPermanentes();
     }
 
     static void cadastrarExposicao(){
@@ -594,11 +634,11 @@ public class Main{
         Date dataInicio = Date.valueOf(data1);
         Date dataFinal = Date.valueOf(data2);
 
-        cadastroExposicao(nomeExposicao, dataInicio, dataFinal);
+        //cadastroExposicao(nomeExposicao, dataInicio, dataFinal);
     }
 
     static void listarExposicoes(){
-        listaExposicoes();
+        //listaExposicoes();
     }
 
     static void cadastrarColecao(){
@@ -618,11 +658,12 @@ public class Main{
         System.out.println("Tipo da coleção ");
         String tipo = colecao.next();
 
-        cadastroColecao(nomeColecao, descricao, endereco, telefone, pessoaContato, tipo);
+        //cadastroColecao(nomeColecao, descricao, endereco, telefone, pessoaContato, tipo);
     }
 
     static void listarColecoes(){
-        listaColecoes();
+        //listaColecoes();
 
-    }
+    }*/
+}
 }
