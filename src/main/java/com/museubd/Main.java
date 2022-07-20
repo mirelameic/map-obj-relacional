@@ -205,6 +205,7 @@ public class Main{
         int mesMorte = artista.nextInt();
         System.out.println("Dia da morte ");
         int diaMorte = artista.nextInt();
+        artista.close();
 
         String traco = "-";
         String dataNasc = anoNascimento + traco + mesNascimento + traco + diaNascimento;
@@ -255,6 +256,7 @@ public class Main{
         int mesMorte = artista.nextInt();
         System.out.println("Dia da morte ");
         int diaMorte = artista.nextInt();
+        artista.close();
 
         String traco = "-";
         String dataNasc = anoNascimento + traco + mesNascimento + traco + diaNascimento;
@@ -281,6 +283,7 @@ public class Main{
         System.out.println("Artista a ser alterado (nome) ");
         Scanner artista = new Scanner(System.in);
         String nome = artista.next();
+        artista.close();
 
         objetoArtista.setNome(nome);
 
@@ -301,7 +304,7 @@ public class Main{
         System.out.println("Descrição ");
         String descricao = objeto.next();
         System.out.println("Ano de criação ");
-        int anoCriacao = objeto.nextInt();
+        String anoCriacao = objeto.next();
         System.out.println("Período da arte ");
         String periodoArte = objeto.next();
         System.out.println("País da cultura ");
@@ -313,7 +316,7 @@ public class Main{
         System.out.println("Tipo: 1 para pintura, 2 para escultura, 3 para outros ");
         int tipo = objeto.nextInt();
 
-        String tp, st;
+        String tp="", st="";
         switch(tipo){
             case 1:
                 tp = "pintura"; 
@@ -331,6 +334,7 @@ public class Main{
 
         System.out.println("Status: 1 para emprestado, 2 para permanente ");
         int status = objeto.nextInt();
+        objeto.close();
 
         switch(status){
             case 1:
@@ -346,7 +350,7 @@ public class Main{
         objetoObjeto.setTitulo(titulo);
         objetoObjeto.setNomeArtista(nomeArtista);
         objetoObjeto.setDescricao(descricao);
-        objetoObjeto.setAnoCriacao(anoCriacao);
+        objetoObjeto.setAnoCriacao(Date.valueOf(anoCriacao));
         objetoObjeto.setPeriodoArt(periodoArte);
         objetoObjeto.setPaisCultura(paisCultura);
         objetoObjeto.setEstilo(estilo);
@@ -377,7 +381,7 @@ public class Main{
         System.out.println("Descrição ");
         String descricao = objeto.next();
         System.out.println("Ano de criação ");
-        int anoCriacao = objeto.nextInt();
+        String anoCriacao = objeto.next();
         System.out.println("Período da arte ");
         String periodoArte = objeto.next();
         System.out.println("País da cultura ");
@@ -389,7 +393,7 @@ public class Main{
         System.out.println("Tipo: 1 para pintura, 2 para escultura, 3 para outros ");
         int tipo = objeto.nextInt();
 
-        String tp, st;
+        String tp = "", st="";
         switch(tipo){
             case 1:
                 tp = "pintura"; 
@@ -407,6 +411,7 @@ public class Main{
 
         System.out.println("Status: 1 para emprestado, 2 para permanente ");
         int status = objeto.nextInt();
+        objeto.close();
 
         switch(status){
             case 1:
@@ -419,10 +424,11 @@ public class Main{
                 break;
         }
 
+        objetoObjeto.setNumID(id);
         objetoObjeto.setTitulo(titulo);
         objetoObjeto.setNomeArtista(nomeArtista);
         objetoObjeto.setDescricao(descricao);
-        objetoObjeto.setAnoCriacao(anoCriacao);
+        objetoObjeto.setAnoCriacao(Date.valueOf(anoCriacao));
         objetoObjeto.setPeriodoArt(periodoArte);
         objetoObjeto.setPaisCultura(paisCultura);
         objetoObjeto.setEstilo(estilo);
@@ -442,6 +448,7 @@ public class Main{
         System.out.println("Id do objeto ");
         Scanner objeto = new Scanner(System.in);
         int id = objeto.nextInt();
+        objeto.close();
 
         objetoObjeto.setNumID(id);
 
