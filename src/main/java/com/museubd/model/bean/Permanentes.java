@@ -5,8 +5,6 @@ public class Permanentes{
     private int num_obj5;
     private boolean emExposicao;
     private Date dataAquisicao;
-    private double custo;
-    private String colecaoPermanente;
 
     public int getNum_obj5(){
         return this.num_obj5;
@@ -34,21 +32,5 @@ public class Permanentes{
 
     public void setDataAquisicao(Date dataAquisicao){
         this.dataAquisicao = dataAquisicao;
-    }
-
-    public double getCusto(){
-        return this.custo;
-    }
-
-    public void setCusto(double custo){
-        this.custo = custo;
-    }
-
-    public String getColecaoPermanente(){
-        return this.colecaoPermanente;
-    }
-
-    public void setColecaoPermanente(String colecaoPermanente){
-        this.colecaoPermanente = colecaoPermanente;
     }
 }

@@ -10,7 +10,7 @@ import com.museubd.model.bean.Artista;
 
 public class ArtistaDAO{
 
-    public void insert(Artista artista){
+    public static void insert(Artista artista){
 
         Connection con = ConnectionBD.openConnection();
         PreparedStatement stmt = null;
@@ -38,7 +38,7 @@ public class ArtistaDAO{
         }
     }
 
-    public void delete(Artista artista){
+    public static void delete(Artista artista){
 
         Connection con = ConnectionBD.openConnection();
         PreparedStatement stmt = null;
@@ -57,7 +57,7 @@ public class ArtistaDAO{
 
     }
 
-    public void update(Artista artista){
+    public static void update(Artista artista){
 
         Connection con = ConnectionBD.openConnection();
         PreparedStatement stmt = null;
@@ -86,7 +86,7 @@ public class ArtistaDAO{
     }
 
       
-    public List<Artista> read(){
+    public static List<Artista> read(){
 
         Connection con = ConnectionBD.openConnection();
         PreparedStatement stmt = null;

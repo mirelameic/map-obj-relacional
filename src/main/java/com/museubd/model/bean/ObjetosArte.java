@@ -10,32 +10,10 @@ public class ObjetosArte{
     private String periodoArt;
     private String paisCultura;
     private String estilo;
-    private Tipo tipo;
-    private Status status;
+    private String tipo;
+    private String status;
+    private double custo;
 
-    public enum Tipo{
-        PINTURA, ESCULTURA, OUTRO
-    }
-
-    public enum Status{
-        PERMANENTE, EMPRESTADO
-    }
-
-    public Tipo getTipo(){
-        return this.tipo;
-    }
-
-    public void setTipo(Tipo tipo){
-        this.tipo = tipo;
-    }
-
-    public Status getStatus(){
-        return this.status;
-    }
-
-    public void setStatus(Status status){
-        this.status = status;
-    }
 
     public int getNumID(){
         return this.numID;
@@ -100,5 +78,28 @@ public class ObjetosArte{
     public void setEstilo(String estilo){
         this.estilo = estilo;
     }
-    
+
+    public String getTipo(){
+        return this.tipo;
+    }
+
+    public void setTipo(String tipo){
+        this.tipo = tipo;
+    }
+
+    public String getStatus(){
+        return this.status;
+    }
+
+    public void setStatus(String status){
+        this.status = status;
+    }
+
+    public double getCusto() {
+        return this.custo;
+    }
+
+    public void setCusto(double custo) {
+        this.custo = custo;
+    }
 }

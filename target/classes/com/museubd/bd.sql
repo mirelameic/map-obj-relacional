@@ -1,5 +1,4 @@
---------------------TABELAS--------------------
-
+------------------------------------------------------------TABELAS------------------------------------------------------------
 CREATE TABLE ARTISTA(
     NOME VARCHAR(100) NOT NULL,
     DESCRICAO VARCHAR(200) NOT NULL,
@@ -11,9 +10,6 @@ CREATE TABLE ARTISTA(
     PRIMARY KEY (NOME)
 );
 
-CREATE TYPE TIPO AS ENUM ('PINTURA','ESCULTURA','OUTRO');
-CREATE TYPE STATUS AS ENUM ('PERMANENTE','EMPRESTADO');
-
 CREATE TABLE OBJETOS_ARTE(
     NUM_ID INT NOT NULL,
     TITULO VARCHAR(100) NOT NULL,
@@ -23,8 +19,9 @@ CREATE TABLE OBJETOS_ARTE(
     PERIODO_ART VARCHAR(100) NOT NULL,
     PAIS_CULTURA VARCHAR(100) NOT NULL,
     ESTILO VARCHAR(100) NOT NULL,
-    TIPO TIPO NOT NULL,
-    STATUS STATUS NOT NULL,
+    TIPO VARCHAR(100) NOT NULL,
+    STATUS VARCHAR(100) NOT NULL,
+    CUSTO DOUBLE PRECISION NOT NULL CHECK (CUSTO>0),
     PRIMARY KEY (NUM_ID)
 );
 
@@ -61,8 +58,6 @@ CREATE TABLE PERMANENTES(
     NUM_OBJ5 INT NOT NULL,
     EM_EXPOSICAO BIT NOT NULL, 
     DATA_AQUISICAO DATE NOT NULL,
-    CUSTO DOUBLE PRECISION NOT NULL CHECK (CUSTO>0),
-    COL_PERMANENTE VARCHAR(100) NOT NULL,
     PRIMARY KEY (NUM_OBJ5)
 );
 
@@ -76,12 +71,6 @@ CREATE TABLE COLECAO(
     PRIMARY KEY (NOME_COLECAO)
 );
 
-CREATE TABLE EXPOSTO_EM(
-    NUM_OBJ6 INT NOT NULL,
-    NOME_EXPOSICAO VARCHAR(100) NOT NULL,
-    PRIMARY KEY (NUM_OBJ6, NOME_EXPOSICAO)
-);
-
 CREATE TABLE EXPOSICOES(
     NOME_EXPOSICAO VARCHAR(100) NOT NULL,
     DATA_INICIO DATE NOT NULL,
@@ -89,8 +78,14 @@ CREATE TABLE EXPOSICOES(
     PRIMARY KEY (NOME_EXPOSICAO)
 );
 
+CREATE TABLE EXPOSTO_EM(
+    NUM_OBJ6 INT NOT NULL,
+    NOME_EXPOSICAO VARCHAR(100) NOT NULL,
+    PRIMARY KEY (NUM_OBJ6, NOME_EXPOSICAO)
+);
 
---------------------CHAVES ESTRANGEIRAS--------------------
+------------------------------------------------------------CHAVES ESTRANGEIRAS------------------------------------------------------------
+--------------------P/ OBJETOARTE--------------------
 ALTER TABLE PINTURAS ADD CONSTRAINT pinturas_objarte_fk
 FOREIGN KEY (NUM_OBJ1)
 REFERENCES OBJETOS_ARTE (NUM_ID)
@@ -126,12 +121,7 @@ FOREIGN KEY (NUM_OBJ6)
 REFERENCES OBJETOS_ARTE (NUM_ID)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
-
-ALTER TABLE EXPOSTO_EM ADD CONSTRAINT expostoem_exposicoes_fk
-FOREIGN KEY (NOME_EXPOSICAO)
-REFERENCES EXPOSICOES (NOME_EXPOSICAO)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION;
+------------------------------------------------------------
 
 ALTER TABLE OBJETOS_ARTE ADD CONSTRAINT objetosarte_artista_fk
 FOREIGN KEY (NOME_ARTISTA)
@@ -145,144 +135,225 @@ REFERENCES COLECAO (NOME_COLECAO)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
-ALTER TABLE PERMANENTES ADD CONSTRAINT permanentes_colecao_fk
-FOREIGN KEY (COL_PERMANENTE)
-REFERENCES COLECAO (NOME_COLECAO)
+ALTER TABLE EXPOSTO_EM ADD CONSTRAINT expostoem_exposicoes_fk
+FOREIGN KEY (NOME_EXPOSICAO)
+REFERENCES EXPOSICOES (NOME_EXPOSICAO)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
+------------------------------------------------------------INSERÇÕES------------------------------------------------------------
+INSERT INTO ARTISTA VALUES('Tarsila do Amaral', 'descrição', 'Modernista', 'Modernismo', 'Brasil', DATE '1886-01-01', DATE '1973-01-01');
 
---------------------INSERÇÕES--------------------
-INSERT INTO ARTISTA VALUES('Tarsila do Amaral', 'descrição', 'Modernista', 'Modernismo', 'Brasil', DATE '1886-12-17', DATE '1973-12-17');
+INSERT INTO ARTISTA VALUES('Di Cavalcante', 'descrição', 'Modernista', 'Modernismo', 'Brasil', DATE '1897-01-01', DATE '1976-01-01');
 
-INSERT INTO ARTISTA VALUES('Di Cavalcante', 'descrição', 'Modernista', 'Modernismo', 'Brasil', DATE '1897-12-17', DATE '1976-12-17');
+INSERT INTO ARTISTA VALUES('Vicent Van Gogh', 'descrição', 'Impressionista', 'Pós-Impressionismo', 'Holanda', DATE '1853-01-01', DATE '1890-01-01');
 
-INSERT INTO ARTISTA VALUES('Vicent Van Gogh', 'descrição', 'Impressionista', 'Pós-Impressionismo', 'Holanda', DATE '1853-12-17', DATE '1890-12-17');
+INSERT INTO ARTISTA VALUES('Pablo Picaso', 'descrição', 'Cubista', 'Cubismo', 'França', DATE '1881-01-01', DATE '1973-01-01');
 
-INSERT INTO ARTISTA VALUES('Pablo Picaso', 'descrição', 'Cubista', 'Cubismo', 'França', DATE '1881-12-17', DATE '1973-12-17');
+INSERT INTO ARTISTA VALUES('Frida Kahlo', 'descrição', 'Surrealista', 'Surrealismo', 'México', DATE '1907-01-01', DATE '1954-01-01');
 
-INSERT INTO ARTISTA VALUES('Frida Kahlo', 'descrição', 'Surrealista', 'Surrealismo', 'México', DATE '1907-12-17', DATE '1954-12-17');
+INSERT INTO ARTISTA VALUES('Candido Portinari', 'descrição', 'Expressionista', 'Expressionismo', 'Brasil', DATE '1903-01-01', DATE '1962-01-01');
 
-INSERT INTO ARTISTA VALUES('Candido Portinari', 'descrição', 'Expressionista', 'Expressionismo', 'Brasil', DATE '1903-12-17', DATE '1962-12-17');
+INSERT INTO ARTISTA VALUES('Salvador Dalí', 'descrição', 'Surrealista', 'Surrealismo', 'Espanha', DATE '1904-01-01', DATE '1989-01-01');
 
-INSERT INTO ARTISTA VALUES('Salvador Dalí', 'descrição', 'Surrealista', 'Surrealismo', 'Espanha', DATE '1904-12-17', DATE '1989-12-17');
+INSERT INTO ARTISTA VALUES('Anita Malfatti', 'descrição', 'Modernista', 'Modernismo', 'Brasil', DATE '1889-01-01', DATE '1964-01-01');
 
-INSERT INTO ARTISTA VALUES('Anita Malfatti', 'descrição', 'Modernista', 'Modernismo', 'Brasil', DATE '1889-12-17', DATE '1964-12-17');
+INSERT INTO ARTISTA VALUES('Mário de Andrade', 'descrição', 'Modernista', 'Modernismo', 'Brasil', DATE '1893-01-01', DATE '1945-01-01');
 
-INSERT INTO ARTISTA VALUES('Mário de Andrade', 'descrição', 'Modernista', 'Modernismo', 'Brasil', DATE '1893-12-17', DATE '1945-12-17');
+INSERT INTO ARTISTA VALUES('Aleijadinho', 'descrição', 'Barroca', 'Barroco', 'Brasil', DATE '1738-01-01', DATE '1814-01-01');
 
-INSERT INTO ARTISTA VALUES('Artemisia Gentileschi', 'descrição', 'Barroca', 'Barroco', 'Itália', DATE '1593-12-17', DATE '1653-12-17');
+INSERT INTO ARTISTA VALUES('Michelangelo Buonarroti', 'descrição', 'Renascentista', 'Renascimento', 'Itália', DATE '1475-01-01', DATE '1564-01-01');
 
+INSERT INTO ARTISTA VALUES('Donatello', 'descrição', 'Renascentista', 'Renascimento', 'Itália', DATE '1386-01-01', DATE '1466-01-01');
 
+INSERT INTO ARTISTA VALUES('Lorenzo Ghiberti', 'descrição', 'Renascentista', 'Renascimento', 'Itália', DATE '1378-01-01', DATE '1455-01-01');
 
-INSERT INTO EXPOSICOES VALUES('Exposicao Paulista', DATE '2010-01-01', DATE '2012-01-01');
-
-INSERT INTO EXPOSICOES VALUES('Exposicao MASP', DATE '2012-01-01', DATE '2014-01-01');
-
-
-
-INSERT INTO COLECAO VALUES('Colecao de Verao', 'descrição', 'Av Paulista', '11999999', 'Contato', 'Tipo');
-
-INSERT INTO COLECAO VALUES('Colecao de Inverno', 'descrição', 'Av Paulista', '11999999', 'Contato', 'Tipo');
-
-INSERT INTO COLECAO VALUES('Colecao Permanente', 'descrição', 'São Paulo', '11999999', 'Contato', 'Tipo');
+INSERT INTO ARTISTA VALUES('Auguste Rodin', 'descrição', 'Modernista', 'Modernismo', 'França', DATE '1840-01-01', DATE '1917-01-01');
 
 
 
-INSERT INTO OBJETOS_ARTE VALUES(1, 'Abaporu', 'Tarsila do Amaral', 'descrição', DATE '1928-12-17', 'Antropofágico', 'Brasil', 'óleo sobre tela', 'PINTURA', 'EMPRESTADO', 11200.0);
+INSERT INTO EXPOSICOES VALUES('Exposicao 1', DATE '2012-01-01', DATE '2014-01-01');
+
+INSERT INTO EXPOSICOES VALUES('Exposicao 2', DATE '2012-01-01', DATE '2014-01-01');
+
+INSERT INTO EXPOSICOES VALUES('Exposicao 3', DATE '2012-01-01', DATE '2014-01-01');
+
+INSERT INTO EXPOSICOES VALUES('Exposicao 4', DATE '2012-01-01', DATE '2014-01-01');
+
+INSERT INTO EXPOSICOES VALUES('Exposicao 5', DATE '2012-01-01', DATE '2014-01-01');
+
+INSERT INTO EXPOSICOES VALUES('Exposicao 6', DATE '2012-01-01', DATE '2014-01-01');
+
+
+
+INSERT INTO COLECAO VALUES('Colecao 1', 'descrição', 'São Paulo', '11999999', 'Contato', 'Tipo');
+
+INSERT INTO COLECAO VALUES('Colecao 2', 'descrição', 'São Paulo', '11999999', 'Contato', 'Tipo');
+
+INSERT INTO COLECAO VALUES('Colecao 3', 'descrição', 'São Paulo', '11999999', 'Contato', 'Tipo');
+
+INSERT INTO COLECAO VALUES('Colecao 4', 'descrição', 'São Paulo', '11999999', 'Contato', 'Tipo');
+
+INSERT INTO COLECAO VALUES('Colecao 5', 'descrição', 'São Paulo', '11999999', 'Contato', 'Tipo');
+
+INSERT INTO COLECAO VALUES('Colecao 6', 'descrição', 'São Paulo', '11999999', 'Contato', 'Tipo');
+
+
+
+INSERT INTO OBJETOS_ARTE VALUES(1, 'Abaporu', 'Tarsila do Amaral', 'descrição', DATE '1928-01-01', 'Antropofágico', 'Brasil', 'óleo sobre tela', 'PINTURA', 'EMPRESTADO', 100.0);
 
 INSERT INTO PINTURAS VALUES(1, 'óleo', 'suporte');
 
-INSERT INTO EMPRESTADOS VALUES(1, 'Colecao de Verao', DATE '2010-01-01', DATE '2012-01-01');
+INSERT INTO EMPRESTADOS VALUES(1, 'Colecao 1', DATE '2010-01-01', DATE '2012-01-01');
 
-INSERT INTO EXPOSTO_EM VALUES(1, 'Exposicao Paulista');
+INSERT INTO EXPOSTO_EM VALUES(1, 'Exposicao 1');
 
 
 
-INSERT INTO OBJETOS_ARTE VALUES(2, 'A Negra', 'Tarsila do Amaral', 'descrição', DATE '1923-12-17', 'Antropofágico', 'Brasil', 'óleo sobre tela', 'PINTURA', 'EMPRESTADO', 11500.0);
+INSERT INTO OBJETOS_ARTE VALUES(2, 'A Negra', 'Tarsila do Amaral', 'descrição', DATE '1923-01-01', 'Antropofágico', 'Brasil', 'óleo sobre tela', 'PINTURA', 'EMPRESTADO', 200.0);
 
 INSERT INTO PINTURAS VALUES(2, 'óleo', 'suporte');
 
-INSERT INTO EMPRESTADOS VALUES(2, 'Colecao de Verao', DATE '2010-01-01', DATE '2012-01-01');
+INSERT INTO EMPRESTADOS VALUES(2, 'Colecao 2', DATE '2010-10-01', DATE '2012-10-01');
 
-INSERT INTO EXPOSTO_EM VALUES(2, 'Exposicao Paulista');
+INSERT INTO EXPOSTO_EM VALUES(2, 'Exposicao 2');
 
 
 
-INSERT INTO OBJETOS_ARTE VALUES(3, 'Castelo', NULL, 'descrição', DATE '1940-12-17', 'Antropofágico', 'Iália', 'óleo sobre tela', 'PINTURA', 'EMPRESTADO', 1300.0);
+INSERT INTO OBJETOS_ARTE VALUES(3, 'Castelo', NULL, 'descrição', DATE '1940-01-01', 'Antropofágico', 'Iália', 'óleo sobre tela', 'PINTURA', 'EMPRESTADO', 300.0);
 
 INSERT INTO PINTURAS VALUES(3, 'óleo', 'suporte');
 
-INSERT INTO EMPRESTADOS VALUES(3, 'Colecao de Verao', DATE '2010-01-01', DATE '2012-01-01');
+INSERT INTO EMPRESTADOS VALUES(3, 'Colecao 3', DATE '2015-06-01', DATE '2018-06-01');
 
-INSERT INTO EXPOSTO_EM VALUES(3, 'Exposicao Paulista');
+INSERT INTO EXPOSTO_EM VALUES(3, 'Exposicao 3');
 
 
 
-INSERT INTO OBJETOS_ARTE VALUES(4, 'A Ponte', NULL, 'descrição', DATE '1940-12-17', 'Antropofágico', 'Iália', 'óleo sobre tela', 'PINTURA', 'EMPRESTADO', 1300.0);
+INSERT INTO OBJETOS_ARTE VALUES(4, 'A Ponte', NULL, 'descrição', DATE '1940-01-01', 'Antropofágico', 'Iália', 'óleo sobre tela', 'PINTURA', 'EMPRESTADO', 400.0);
 
 INSERT INTO PINTURAS VALUES(4, 'óleo', 'suporte');
 
-INSERT INTO EMPRESTADOS VALUES(4, 'Colecao de Verao', DATE '2010-01-01', DATE '2012-01-01');
+INSERT INTO EMPRESTADOS VALUES(4, 'Colecao 4', DATE '2015-01-01', DATE '2018-01-01');
 
-INSERT INTO EXPOSTO_EM VALUES(4, 'Exposicao Paulista');
+INSERT INTO EXPOSTO_EM VALUES(4, 'Exposicao 4');
 
 
 
-INSERT INTO OBJETOS_ARTE VALUES(5, 'Mulatas', 'Di Cavalcante', 'descrição', DATE '1928-12-17', 'Antropofágico', 'Brasil', 'Retrato', 'PINTURA', 'EMPRESTADO', 2200.0);
+INSERT INTO OBJETOS_ARTE VALUES(5, 'Mulatas', 'Di Cavalcante', 'descrição', DATE '1928-01-01', 'Antropofágico', 'Brasil', 'Retrato', 'PINTURA', 'EMPRESTADO', 500.0);
 
 INSERT INTO PINTURAS VALUES(5, 'óleo', 'suporte');
 
-INSERT INTO EMPRESTADOS VALUES(5, 'Colecao de Inverno', DATE '2012-01-01', DATE '2012-01-01');
+INSERT INTO EMPRESTADOS VALUES(5, 'Colecao 5', DATE '2017-01-01', DATE '2019-01-01');
 
-INSERT INTO EXPOSTO_EM VALUES(5, 'Exposicao MASP');
+INSERT INTO EXPOSTO_EM VALUES(5, 'Exposicao 5');
 
 
 
-INSERT INTO OBJETOS_ARTE VALUES(6, 'A Noite Estrelada', 'Vicent Van Gogh', 'descrição', DATE '1889-12-17', 'Modernismo', 'Holanda', 'óleo sobre tela', 'PINTURA', 'PERMANENTE', 2500.0);
+INSERT INTO OBJETOS_ARTE VALUES(6, 'Auto-Retrato', 'Vicent Van Gogh', 'descrição', DATE '1889-01-01', 'Modernismo', 'Holanda', 'óleo sobre tela', 'PINTURA', 'PERMANENTE', 600.0);
 
 INSERT INTO PINTURAS VALUES(6, 'óleo', 'suporte');
 
-INSERT INTO PERMANENTES VALUES(6, '1', DATE '2015-01-01', 'Colecao Permanente');
+INSERT INTO EMPRESTADOS VALUES(6, 'Colecao 6', DATE '2017-01-01', DATE '2019-01-01');
 
-INSERT INTO EXPOSTO_EM VALUES(6, 'Exposicao MASP');
+INSERT INTO EXPOSTO_EM VALUES(6, 'Exposicao 6');
 
 
 
-INSERT INTO OBJETOS_ARTE VALUES(7, 'Os Girassóis', 'Vicent Van Gogh', 'descrição', DATE '1889-12-17', 'Modernismo', 'Holanda', 'óleo sobre tela', 'PINTURA', 'PERMANENTE', 25500.0);
+INSERT INTO OBJETOS_ARTE VALUES(7, 'A Noite Estrelada', 'Vicent Van Gogh', 'descrição', DATE '1889-01-01', 'Modernismo', 'Holanda', 'óleo sobre tela', 'PINTURA', 'PERMANENTE', 700.0);
 
 INSERT INTO PINTURAS VALUES(7, 'óleo', 'suporte');
 
-INSERT INTO PERMANENTES VALUES(7, '1', DATE '2015-01-01', 'Colecao Permanente');
+INSERT INTO PERMANENTES VALUES(7, '1', DATE '2015-01-01');
 
-INSERT INTO EXPOSTO_EM VALUES(7, 'Exposicao Paulista');
+INSERT INTO EXPOSTO_EM VALUES(7, 'Exposicao 1');
 
 
 
-INSERT INTO OBJETOS_ARTE VALUES(8, 'Auto-Retrato', 'Vicent Van Gogh', 'descrição', DATE '1889-12-17', 'Modernismo', 'Holanda', 'óleo sobre tela', 'PINTURA', 'PERMANENTE', 25500.0);
+INSERT INTO OBJETOS_ARTE VALUES(8, 'Os Girassóis', 'Vicent Van Gogh', 'descrição', DATE '1889-01-01', 'Modernismo', 'Holanda', 'óleo sobre tela', 'PINTURA', 'PERMANENTE', 800.0);
 
 INSERT INTO PINTURAS VALUES(8, 'óleo', 'suporte');
 
-INSERT INTO EMPRESTADOS VALUES(8, 'Colecao de Inverno', DATE '2012-01-01', DATE '2012-01-01');
+INSERT INTO PERMANENTES VALUES(8, '1', DATE '2015-01-01');
 
-INSERT INTO EXPOSTO_EM VALUES(8, 'Exposicao Paulista');
+INSERT INTO EXPOSTO_EM VALUES(8, 'Exposicao 2');
 
 
 
-INSERT INTO OBJETOS_ARTE VALUES(9, 'O Grande Masturbador', 'Salvador Dalí', 'descrição', DATE '1929-12-17', 'Surrealismo', 'Espanha', 'óleo sobre tela', 'PINTURA', 'PERMANENTE', 27500.0);
+INSERT INTO OBJETOS_ARTE VALUES(9, 'O Grande Masturbador', 'Salvador Dalí', 'descrição', DATE '1929-01-01', 'Surrealismo', 'Espanha', 'óleo sobre tela', 'PINTURA', 'PERMANENTE', 900.0);
 
 INSERT INTO PINTURAS VALUES(9, 'óleo', 'suporte');
 
-INSERT INTO PERMANENTES VALUES(9, '1', DATE '2015-01-01', 'Colecao Permanente');
+INSERT INTO PERMANENTES VALUES(9, '1', DATE '2020-02-01');
 
-INSERT INTO EXPOSTO_EM VALUES(9, 'Exposicao MASP');
+INSERT INTO EXPOSTO_EM VALUES(9, 'Exposicao 3');
 
 
 
-INSERT INTO OBJETOS_ARTE VALUES(10, 'A Persistência da Memória', 'Salvador Dalí', 'descrição', DATE '1931-12-17', 'Surrealismo', 'Espanha', 'óleo sobre tela', 'PINTURA', 'PERMANENTE', 1200000.0);
+INSERT INTO OBJETOS_ARTE VALUES(10, 'A Persistência da Memória', 'Salvador Dalí', 'descrição', DATE '1931-01-01', 'Surrealismo', 'Espanha', 'óleo sobre tela', 'PINTURA', 'PERMANENTE', 1000.0);
 
 INSERT INTO PINTURAS VALUES(10, 'óleo', 'suporte');
 
-INSERT INTO PERMANENTES VALUES(10, '1', DATE '2015-01-01', 'Colecao Permanente');
+INSERT INTO PERMANENTES VALUES(10, '1', DATE '2020-02-01');
 
-INSERT INTO EXPOSTO_EM VALUES(10, 'Exposicao MASP');
+INSERT INTO EXPOSTO_EM VALUES(10, 'Exposicao 4');
+
+
+
+INSERT INTO OBJETOS_ARTE VALUES(11, 'O Pensador', 'Auguste Rodin', 'descrição', DATE '1902-01-01', 'Realismo', 'França', 'escultura de bronze', 'ESCULTURA', 'PERMANENTE', 2000.0);
+
+INSERT INTO ESCULTURAS VALUES(11, 'bronze', 200, 90);
+
+INSERT INTO PERMANENTES VALUES(11, '1', DATE '2020-10-01');
+
+INSERT INTO EXPOSTO_EM VALUES(11, 'Exposicao 5');
+
+
+
+INSERT INTO OBJETOS_ARTE VALUES(12, 'S. João Batista', 'Lorenzo Ghiberti', 'descrição', DATE '1412-01-01', 'Renascimento', 'Itália', 'escultura de bronze', 'ESCULTURA', 'PERMANENTE', 3000.0);
+
+INSERT INTO ESCULTURAS VALUES(12, 'bronze', 200, 90);
+
+INSERT INTO PERMANENTES VALUES(12, '1', DATE '2015-06-01');
+
+INSERT INTO EXPOSTO_EM VALUES(12, 'Exposicao 6');
+
+
+
+INSERT INTO OBJETOS_ARTE VALUES(13, 'David', 'Donatello', 'descrição', DATE '1430-01-01', 'Renascimento', 'Itália', 'escultura de bronze', 'ESCULTURA', 'PERMANENTE', 4000.0);
+
+INSERT INTO ESCULTURAS VALUES(13, 'bronze', 200, 90);
+
+INSERT INTO PERMANENTES VALUES(13, '1', DATE '2020-10-01');
+
+INSERT INTO EXPOSTO_EM VALUES(13, 'Exposicao 1');
+
+
+
+INSERT INTO OBJETOS_ARTE VALUES(14, 'Moisés', 'Michelangelo Buonarroti', 'descrição', DATE '1430-01-01', 'Renascimento', 'Itália', 'escultura de mármore', 'ESCULTURA', 'PERMANENTE', 5000.0);
+
+INSERT INTO ESCULTURAS VALUES(14, 'mármore', 200, 90);
+
+INSERT INTO PERMANENTES VALUES(14, '1', DATE '2017-10-01');
+
+INSERT INTO EXPOSTO_EM VALUES(14, 'Exposicao 2');
+
+
+
+INSERT INTO OBJETOS_ARTE VALUES(15, 'Jesus carregando a cruz', 'Aleijadinho', 'descrição', DATE '1430-01-01', 'Barroco', 'Brasil', 'escultura de mármore', 'ESCULTURA', 'PERMANENTE', 6000.0);
+
+INSERT INTO ESCULTURAS VALUES(15, 'mármore', 200, 90);
+
+INSERT INTO PERMANENTES VALUES(15, '1', DATE '2020-06-01');
+
+INSERT INTO EXPOSTO_EM VALUES(15, 'Exposicao 3');
+
+
+
+INSERT INTO OBJETOS_ARTE VALUES(16, 'Teto da Capela Sistina', 'Michelangelo Buonarroti', 'descrição', DATE '1508-01-01', 'Renascimento', 'Itália', 'obra no teto', 'OUTROS', 'PERMANENTE', 7000.0);
+
+INSERT INTO OUTROS VALUES(16, 'ouro e gesso no teto');
+
+INSERT INTO EMPRESTADOS VALUES(16, 'Colecao 1', DATE '2020-01-01', DATE '2012-01-01');
+
+INSERT INTO EXPOSTO_EM VALUES(16, 'Exposicao 4');
