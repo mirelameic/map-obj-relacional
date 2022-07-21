@@ -18,7 +18,7 @@ public class OutrosDAO {
             stmt = con.prepareStatement(
                 "INSERT INTO OUTROS "
                 + "(num_obj3, tipo) " 
-                + "VALUES(?, ?");
+                + "VALUES(?, ?)");
         
             stmt.setInt(1, outro.getNum_obj3());
             stmt.setString(2, outro.getTipo());
@@ -26,7 +26,7 @@ public class OutrosDAO {
             System.out.println("Outro inserido com sucesso!");
 
         }catch (SQLException e){
-            System.out.println("Exception insert OutrosDAO");
+            System.out.println("Exception update OutrosDAO");
         }finally{
             ConnectionBD.closeConnection(con, stmt);
         }
@@ -62,7 +62,7 @@ public class OutrosDAO {
                 + "tipo = ?" 
                 + "WHERE num_obj3 = ?");
             stmt.setString(1, outro.getTipo());
-            stmt.setInt(4, outro.getNum_obj3());
+            stmt.setInt(2, outro.getNum_obj3());
             stmt.executeUpdate();
             System.out.println("Outro atualizada com sucesso!");
 

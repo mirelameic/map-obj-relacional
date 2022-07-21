@@ -17,7 +17,7 @@ public class PinturasDAO {
         try{
             stmt = con.prepareStatement(
                 "INSERT INTO PINTURAS "
-                + "(num_obj1, tipo_tinta, suporte) " 
+                + "(num_obj1, tipo_tinta, suporte)" 
                 + "VALUES(?, ?, ?)");
         
             stmt.setInt(1, pintura.getNum_obj1());
@@ -64,6 +64,7 @@ public class PinturasDAO {
                 + "WHERE num_obj1 = ?");
             stmt.setString(1, pintura.getTipoTinta());
             stmt.setString(2, pintura.getSuporte());
+            stmt.setInt(3, pintura.getNum_obj1());
             stmt.executeUpdate();
             System.out.println("Pintura atualizada com sucesso!");
 

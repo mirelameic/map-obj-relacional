@@ -3,7 +3,7 @@ import java.sql.Date;
 
 public class Permanentes{
     private int num_obj5;
-    private boolean emExposicao;
+    private String emExposicao;
     private Date dataAquisicao;
 
     public int getNum_obj5(){
@@ -14,15 +14,15 @@ public class Permanentes{
         this.num_obj5 = num_obj5;
     }
 
-    public boolean isEmExposicao(){
+    public String isEmExposicao(){
         return this.emExposicao;
     }
 
-    public boolean getEmExposicao(){
+    public String getEmExposicao(){
         return this.emExposicao;
     }
 
-    public void setEmExposicao(boolean emExposicao){
+    public void setEmExposicao(String emExposicao){
         this.emExposicao = emExposicao;
     }
 

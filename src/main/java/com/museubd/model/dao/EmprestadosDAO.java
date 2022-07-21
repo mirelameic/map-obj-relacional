@@ -28,7 +28,7 @@ public class EmprestadosDAO {
             System.out.println("Emprestado inserido com sucesso!");
 
         }catch (SQLException e){
-            System.out.println("Exception insert EmprestadosDAO");
+            System.out.println(e);
         }finally{
             ConnectionBD.closeConnection(con, stmt);
         }
