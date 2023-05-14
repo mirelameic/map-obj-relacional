@@ -1,22 +1,22 @@
 package com.museubd.model.bean;
 
-public class ExpostoEm{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Entity
+@Table(name = "expostoEm")
+@Data
+public class ExpostoEm {
+
+    @Id
+    @Column(name = "num_obj6")
     private int num_obj6;
+
+    @Column(name = "nomeExposicao")
     private String nomeExposicao;
 
-    public int getNum_obj6(){
-        return this.num_obj6;
-    }
-
-    public void setNum_obj6(int num_obj6){
-        this.num_obj6 = num_obj6;
-    }
-
-    public String getNomeExposicao(){
-        return this.nomeExposicao;
-    }
-
-    public void setNomeExposicao(String nomeExposicao){
-        this.nomeExposicao = nomeExposicao;
-    }
 }

@@ -1,40 +1,28 @@
 package com.museubd.model.bean;
 
-public class Esculturas{
+import lombok.Data;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "esculturas")
+@Data
+public class Esculturas {
+
+    @Id
+    @Column(name = "num_obj2")
     private int num_obj2;
+
+    @Column(name = "material")
     private String material;
+
+    @Column(name = "altura")
     private int altura;
+
+    @Column(name = "peso")
     private int peso;
 
-    public int getNum_obj2() {
-        return this.num_obj2;
-    }
-
-    public void setNum_obj2(int num_obj2){
-        this.num_obj2 = num_obj2;
-    }
-
-    public String getMaterial(){
-        return this.material;
-    }
-
-    public void setMaterial(String material){
-        this.material = material;
-    }
-
-    public int getAltura(){
-        return this.altura;
-    }
-
-    public void setAltura(int altura){
-        this.altura = altura;
-    }
-
-    public int getPeso(){
-        return this.peso;
-    }
-
-    public void setPeso(int peso){
-        this.peso = peso;
-    }
 }

@@ -1,58 +1,34 @@
 package com.museubd.model.bean;
 
-public class Colecao{
+
+import lombok.Data;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "colecao")
+@Data
+public class Colecao {
+
+    @Id
+    @Column(name = "nomeColecao")
     private String nomeColecao;
+
+    @Column(name = "descricao")
     private String descricao;
+
+    @Column(name = "endereco")
     private String endereco;
+
+    @Column(name = "telefone")
     private String telefone;
+
+    @Column(name = "pessoaColecao")
     private String pessoaContato;
+
+    @Column(name = "tipoColecao")
     private String tipoColecao;
-
-    public String getNomeColecao(){
-        return this.nomeColecao;
-    }
-
-    public void setNomeColecao(String nomeColecao){
-        this.nomeColecao = nomeColecao;
-    }
-
-    public String getDescricao(){
-        return this.descricao;
-    }
-
-    public void setDescricao(String descricao){
-        this.descricao = descricao;
-    }
-
-    public String getEndereco(){
-        return this.endereco;
-    }
-
-    public void setEndereco(String endereco){
-        this.endereco = endereco;
-    }
-
-    public String getTelefone(){
-        return this.telefone;
-    }
-
-    public void setTelefone(String telefone){
-        this.telefone = telefone;
-    }
-
-    public String getPessoaContato(){
-        return this.pessoaContato;
-    }
-
-    public void setPessoaContato(String pessoaContato){
-        this.pessoaContato = pessoaContato;
-    }
-
-    public String getTipoColecao(){
-        return this.tipoColecao;
-    }
-
-    public void setTipoColecao(String tipoColecao){
-        this.tipoColecao = tipoColecao;
-    }    
 }

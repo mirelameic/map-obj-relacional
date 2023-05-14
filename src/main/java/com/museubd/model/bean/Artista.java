@@ -1,69 +1,38 @@
 package com.museubd.model.bean;
-import java.sql.Date;
 
-public class Artista{
+import lombok.Data;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.util.Date;
+
+@Entity
+@Table(name = "artista")
+@Data
+public class Artista {
+
+    @Id
+    @Column(name = "nome")
     private String nome;
+
+    @Column(name = "descricao")
     private String descricao;
+
+    @Column(name = "estiloPrincipal")
     private String estiloPrincipal;
+
+    @Column(name = "periodoArt")
     private String periodoArt;
+
+    @Column(name = "paisOrig")
     private String paisOrig;
+
+    @Column(name = "dataNasc")
     private Date dataNasc;
+
+    @Column(name = "dataMorte")
     private Date dataMorte;
 
-    public String getNome(){
-        return this.nome;
-    }
-
-    public void setNome(String nome){
-        this.nome = nome;
-    }
-
-    public String getDescricao(){
-        return this.descricao;
-    }
-
-    public void setDescricao(String descricao){
-        this.descricao = descricao;
-    }
-
-    public String getEstiloPrincipal(){
-        return this.estiloPrincipal;
-    }
-
-    public void setEstiloPrincipal(String estiloPrincipal){
-        this.estiloPrincipal = estiloPrincipal;
-    }
-
-    public String getPeriodoArt(){
-        return this.periodoArt;
-    }
-
-    public void setPeriodoArt(String estiloArt){
-        this.periodoArt = estiloArt;
-    }
-
-    public String getPaisOrig(){
-        return this.paisOrig;
-    }
-
-    public void setPaisOrig(String paisOrig){
-        this.paisOrig = paisOrig;
-    }
-
-    public Date getDataNasc(){
-        return this.dataNasc;
-    }
-
-    public void setDataNasc(Date dataNassc){
-        this.dataNasc = dataNassc;
-    }
-
-    public Date getDataMorte(){
-        return this.dataMorte;
-    }
-
-    public void setDataMorte(Date dataMorte){
-        this.dataMorte = dataMorte;
-    }
-    
 }

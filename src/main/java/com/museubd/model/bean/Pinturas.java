@@ -1,32 +1,24 @@
 package com.museubd.model.bean;
 
-public class Pinturas{
+import lombok.Data;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "pinturas")
+@Data
+public class Pinturas {
+
+    @Id
+    @Column(name = "num_obj1")
     private int num_obj1;
+
+    @Column(name = "tipoTinta")
     private String tipoTinta;
+
+    @Column(name = "suporte")
     private String suporte;
-    
-    public int getNum_obj1(){
-        return this.num_obj1;
-    }
-
-    public void setNum_obj1(int num_obj1){
-        this.num_obj1 = num_obj1;
-    }
-
-    public String getTipoTinta(){
-        return this.tipoTinta;
-    }
-
-    public void setTipoTinta(String tipoTinta){
-        this.tipoTinta = tipoTinta;
-    }
-
-    public String getSuporte(){
-        return this.suporte;
-    }
-
-    public void setSuporte(String suporte){
-        this.suporte = suporte;
-    }
 }
-

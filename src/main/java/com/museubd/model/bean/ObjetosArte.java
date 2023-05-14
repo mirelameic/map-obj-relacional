@@ -1,105 +1,50 @@
 package com.museubd.model.bean;
-import java.sql.Date;
 
-public class ObjetosArte{
+import lombok.Data;
+
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "objetosArte")
+@Data
+public class ObjetosArte {
+
+    @Id
+    @Column(name = "numID")
     private int numID;
+
+    @Column(name = "titulo")
     private String titulo;
+
+    @Column(name = "nomeArtista")
     private String nomeArtista;
+
+    @Column(name = "descricao")
     private String descricao;
+
+    @Column(name = "anoCriacao")
     private Date anoCriacao;
+
+    @Column(name = "periodoArt")
     private String periodoArt;
+
+    @Column(name = "paisCultura")
     private String paisCultura;
+
+    @Column(name = "estilo")
     private String estilo;
+
+    @Column(name = "tipo")
     private String tipo;
+
+    @Column(name = "status")
     private String status;
+
+    @Column(name = "custo")
     private double custo;
 
-
-    public int getNumID(){
-        return this.numID;
-    }
-
-    public void setNumID(int numID){
-        this.numID = numID;
-    }
-
-    public String getTitulo(){
-        return this.titulo;
-    }
-
-    public void setTitulo(String titulo){
-        this.titulo = titulo;
-    }
-
-    public String getNomeArtista(){
-        return this.nomeArtista;
-    }
-
-    public void setNomeArtista(String nomeArtista){
-        this.nomeArtista = nomeArtista;
-    }
-
-    public String getDescricao(){
-        return this.descricao;
-    }
-
-    public void setDescricao(String descricao){
-        this.descricao = descricao;
-    }
-
-    public Date getAnoCriacao(){
-        return this.anoCriacao;
-    }
-
-    public void setAnoCriacao(Date anoCriacao){
-        this.anoCriacao = anoCriacao;
-    }
-
-    public String getPeriodoArt(){
-        return this.periodoArt;
-    }
-
-    public void setPeriodoArt(String periodoArt){
-        this.periodoArt = periodoArt;
-    }
-
-    public String getPaisCultura(){
-        return this.paisCultura;
-    }
-
-    public void setPaisCultura(String paisCultura){
-        this.paisCultura = paisCultura;
-    }
-
-    public String getEstilo(){
-        return this.estilo;
-    }
-
-    public void setEstilo(String estilo){
-        this.estilo = estilo;
-    }
-
-    public String getTipo(){
-        return this.tipo;
-    }
-
-    public void setTipo(String tipo){
-        this.tipo = tipo;
-    }
-
-    public String getStatus(){
-        return this.status;
-    }
-
-    public void setStatus(String status){
-        this.status = status;
-    }
-
-    public double getCusto() {
-        return this.custo;
-    }
-
-    public void setCusto(double custo) {
-        this.custo = custo;
-    }
 }

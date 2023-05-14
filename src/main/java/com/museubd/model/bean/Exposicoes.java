@@ -1,32 +1,27 @@
 package com.museubd.model.bean;
-import java.sql.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.Data;
 
-public class Exposicoes{
+import java.util.Date;
+
+@Entity
+@Table(name = "exposicoes")
+@Data
+public class Exposicoes {
+
+    @Id
+    private int id;
+
+    @Column(name = "nomeExposicao")
     private String nomeExposicao;
+
+    @Column(name = "dataInicio")
     private Date dataInicio;
+
+    @Column(name = "dataFinal")
     private Date dataFinal;
 
-    public String getNomeExposicao(){
-        return this.nomeExposicao;
-    }
-
-    public void setNomeExposicao(String nomeExposicao){
-        this.nomeExposicao = nomeExposicao;
-    }
-
-    public Date getDataInicio(){
-        return this.dataInicio;
-    }
-
-    public void setDataInicio(Date dataInicio){
-        this.dataInicio = dataInicio;
-    }
-
-    public Date getDataFinal(){
-        return this.dataFinal;
-    }
-
-    public void setDataFinal(Date dataFinal){
-        this.dataFinal = dataFinal;
-    }    
 }
