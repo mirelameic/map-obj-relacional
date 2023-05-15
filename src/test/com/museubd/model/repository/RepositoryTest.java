@@ -21,7 +21,7 @@ public class RepositoryTest {
     }
 
     @Test
-    public void save() {
+    public void testSave() {
         Outros outros = new Outros();
         outros.setNum_obj3(1);
         outros.setTipo("EmpireAnts");
@@ -34,7 +34,7 @@ public class RepositoryTest {
     }
 
     @Test
-    public void delete() {
+    public void testDeletion() {
         Outros outros = new Outros();
         outros.setNum_obj3(1);
         outros.setTipo("EmpireAnts");
@@ -46,7 +46,7 @@ public class RepositoryTest {
     }
 
     @Test
-    public void findAll() {
+    public void testFindAll() {
         Outros outros1 = new Outros();
         outros1.setNum_obj3(1);
         outros1.setTipo("EmpireAnts");
