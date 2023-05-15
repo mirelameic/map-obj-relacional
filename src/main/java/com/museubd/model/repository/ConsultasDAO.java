@@ -1,4 +1,4 @@
-package com.museubd.model.dao;
+package com.museubd.model.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

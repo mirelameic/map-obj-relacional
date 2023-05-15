@@ -2,6 +2,7 @@ package com.museubd.model.bean;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "objetosArte")
 @Data
-public class ObjetosArte {
+public class ObjetosArte implements Serializable {
 
     @Id
     @Column(name = "numID")

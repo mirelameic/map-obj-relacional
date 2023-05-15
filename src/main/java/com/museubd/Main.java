@@ -13,20 +13,14 @@ import com.museubd.model.bean.Exposicoes;
 import com.museubd.model.bean.Emprestados;
 import com.museubd.model.bean.Outros;
 import com.museubd.model.bean.Permanentes;
-import com.museubd.model.dao.ArtistaDAO;
-import com.museubd.model.dao.ColecaoDAO;
-import com.museubd.model.dao.ObjetosArteDAO;
-import com.museubd.model.dao.PinturasDAO;
-import com.museubd.model.dao.EsculturasDAO;
-import com.museubd.model.dao.ExposicoesDAO;
-import com.museubd.model.dao.EmprestadosDAO;
-import com.museubd.model.dao.OutrosDAO;
-import com.museubd.model.dao.PermanentesDAO;
-import com.museubd.model.dao.ConsultasDAO;
+import com.museubd.model.repository.ConsultasDAO;
+import com.museubd.model.repository.Repository;
 
 public class Main{
+    private static Repository repository;
     public static void main(String[] args){
-        
+
+        repository = new Repository();
         Scanner op = new Scanner(System.in);
         int option;
 
@@ -229,13 +223,12 @@ public class Main{
         objetoArtista.setPaisOrig(paisOrigem);
         objetoArtista.setDataNasc(dataNascimento);
         objetoArtista.setDataMorte(dataMorte);
-
-        ArtistaDAO.insert(objetoArtista);
+        repository.save(objetoArtista);
     }
 
     static void listarArtistas(){
         List<Artista> artistasList = new ArrayList<>();
-        artistasList = ArtistaDAO.read();
+        artistasList = repository.findAll(Artista.class);
         for(int i = 0; i<artistasList.size(); i++){
             System.out.println("\nArtistas");
             System.out.println("Nome \t Descrição \t Estilo principal \t Período da arte \t País de origem \t Data de nascimento \t Data de morte");
@@ -293,7 +286,7 @@ public class Main{
         objetoArtista.setDataNasc(dataNascimento);
         objetoArtista.setDataMorte(dataMorte);
 
-        ArtistaDAO.update(objetoArtista);
+        repository.save(objetoArtista);
     }
 
     static void excluirArtista(){
@@ -308,7 +301,7 @@ public class Main{
 
         objetoArtista.setNome(nome);
 
-        ArtistaDAO.delete(objetoArtista);
+        repository.delete(objetoArtista);
     }
 
     static void cadastrarObjeto(){
@@ -377,13 +370,13 @@ public class Main{
         objetoObjeto.setStatus(st);
         objetoObjeto.setCusto(custo);
 
-        ObjetosArteDAO.insert(objetoObjeto);
+        repository.save(objetoObjeto);
     }
 
     static void listarObjetos(){
 
         List<ObjetosArte> objetosList = new ArrayList<>();
-        objetosList = ObjetosArteDAO.read();
+        objetosList = repository.findAll(Object.class);
         for(int i = 0; i<objetosList.size(); i++){
             System.out.println("\n Objetos");
             System.out.println("ID \t Título \t Nome do artista \t Descrição \t Ano de criação \t Período da Arte \t País da cultura \t Estilo \t Tipo \t Status \t Custo");
@@ -468,7 +461,7 @@ public class Main{
         objetoObjeto.setStatus(st);
         objetoObjeto.setCusto(custo);
 
-        ObjetosArteDAO.update(objetoObjeto);
+        repository.save(objetoObjeto);
     }
 
     static void excluirObjeto(){
@@ -484,7 +477,7 @@ public class Main{
 
         objetoObjeto.setNumID(id);
 
-        ObjetosArteDAO.delete(objetoObjeto);
+        repository.delete(objetoObjeto);
     }
     
     static void cadastrarPintura(){
@@ -505,13 +498,13 @@ public class Main{
         objetoPintura.setTipoTinta(tipo);
         objetoPintura.setSuporte(suporte);
 
-        PinturasDAO.insert(objetoPintura);
+        repository.save(objetoPintura);
     }
 
     static void listarPinturas(){
 
         List<Pinturas> pinturasList = new ArrayList<>();
-        pinturasList = PinturasDAO.read();
+        pinturasList = repository.findAll(Pinturas.class);
         for(int i = 0; i<pinturasList.size(); i++){
             System.out.println("\n Pinturas");
             System.out.println("Objeto \t Tipo da tinta \t Suporte");
@@ -540,7 +533,7 @@ public class Main{
         objetoPintura.setTipoTinta(tipo);
         objetoPintura.setSuporte(suporte);
 
-        PinturasDAO.update(objetoPintura);
+        repository.save(objetoPintura);
     }
 
     static void excluirPintura(){
@@ -555,7 +548,7 @@ public class Main{
 
         objetoPintura.setNum_obj1(id);
 
-        PinturasDAO.delete(objetoPintura);
+        repository.delete(objetoPintura);
     }
 
     static void cadastrarEscultura(){
@@ -581,13 +574,13 @@ public class Main{
         esculturaObjeto.setAltura(altura);
         esculturaObjeto.setPeso(peso);
 
-        EsculturasDAO.insert(esculturaObjeto);
+        repository.save(esculturaObjeto);
     }
 
     static void listarEsculturas(){
 
         List<Esculturas> esculturasList = new ArrayList<>();
-        esculturasList = EsculturasDAO.read();
+        esculturasList = repository.findAll(Esculturas.class);
         for(int i = 0; i<esculturasList.size(); i++){
             System.out.println("\n Esculturas");
             System.out.println("Objeto \t Material \t Altura \t Peso \t");
@@ -620,7 +613,7 @@ public class Main{
         esculturaObjeto.setAltura(altura);
         esculturaObjeto.setPeso(peso);
 
-        EsculturasDAO.update(esculturaObjeto);
+        repository.save(esculturaObjeto);
     }
 
     static void excluirEscultura(){
@@ -635,7 +628,7 @@ public class Main{
 
         objetoEscultura.setNum_obj2(id);
 
-        EsculturasDAO.delete(objetoEscultura);
+        repository.delete(objetoEscultura);
     }
 
     static void cadastrarOutro(){
@@ -653,12 +646,12 @@ public class Main{
         outroObjeto.setNum_obj3(objeto);
         outroObjeto.setTipo(tipo);
 
-        OutrosDAO.insert(outroObjeto);
+        repository.save(outroObjeto);
     }
 
     static void listarOutros(){
         List<Outros> outrosList = new ArrayList<>();
-        outrosList = OutrosDAO.read();
+        outrosList = repository.findAll(Outros.class);
         for(int i = 0; i<outrosList.size(); i++){
             System.out.println("\n Outros");
             System.out.println("Objeto \t Tipo \t");
@@ -683,7 +676,7 @@ public class Main{
         outroObjeto.setNum_obj3(objeto);
         outroObjeto.setTipo(tipo);
 
-        OutrosDAO.update(outroObjeto);
+        repository.save(outroObjeto);
     }
     
     static void excluirOutro(){
@@ -698,7 +691,7 @@ public class Main{
 
         outroObjeto.setNum_obj3(id);
 
-        OutrosDAO.delete(outroObjeto);
+        repository.delete(outroObjeto);
     }
 
     static void cadastrarEmprestado(){
@@ -737,12 +730,12 @@ public class Main{
         emprestadoObjeto.setDataEmprestimo(dataEmprestimo);
         emprestadoObjeto.setDataDevolucao(dataDevolucao);
 
-        EmprestadosDAO.insert(emprestadoObjeto);
+        repository.save(emprestadoObjeto);
     }
 
     static void listarEmprestados(){
         List<Emprestados> emprestadosList = new ArrayList<>();
-        emprestadosList = EmprestadosDAO.read();
+        emprestadosList = repository.findAll(Emprestados.class);
         for(int i = 0; i<emprestadosList.size(); i++){
             System.out.println("\n Emprestados");
             System.out.println("Objeto \t Nome da coleção \t Data de empréstimo \t Data de devolução");
@@ -789,7 +782,7 @@ public class Main{
         emprestadoObjeto.setDataEmprestimo(dataEmprestimo);
         emprestadoObjeto.setDataDevolucao(dataDevolucao);
 
-        EmprestadosDAO.update(emprestadoObjeto);
+        repository.save(emprestadoObjeto);
     }
 
     static void excluirEmprestado(){
@@ -804,7 +797,7 @@ public class Main{
 
         objetoEmprestado.setNum_obj4(id);
 
-        EmprestadosDAO.delete(objetoEmprestado);
+        repository.delete(objetoEmprestado);
     }
 
     static void cadastrarPermanente(){
@@ -834,12 +827,12 @@ public class Main{
         permanenteObjeto.setEmExposicao(emExposicao);
         permanenteObjeto.setDataAquisicao(dataAquisicao);
 
-        PermanentesDAO.insert(permanenteObjeto);
+        repository.save(permanenteObjeto);
     }
 
     static void listarPermanentes(){
         List<Permanentes> permanentesList = new ArrayList<>();
-        permanentesList = PermanentesDAO.read();
+        permanentesList = repository.findAll(Permanentes.class);
         for(int i = 0; i<permanentesList.size(); i++){
             System.out.println("\n Permanentes");
             System.out.println("Objeto \t Em exposição \t Data de aquisição");
@@ -876,7 +869,7 @@ public class Main{
         permanenteObjeto.setEmExposicao(emExposicao);
         permanenteObjeto.setDataAquisicao(dataAquisicao);
 
-        PermanentesDAO.update(permanenteObjeto);
+        repository.save(permanenteObjeto);
     }
 
     static void excluirPermanente(){
@@ -891,7 +884,7 @@ public class Main{
 
         objetoPermanente.setNum_obj5(id);
 
-        PermanentesDAO.delete(objetoPermanente);
+        repository.delete(objetoPermanente);
     }
 
     static void cadastrarExposicao(){
@@ -927,12 +920,12 @@ public class Main{
         exposicaoObjeto.setDataInicio(dataInicio);
         exposicaoObjeto.setDataFinal(dataFinal);
 
-        ExposicoesDAO.insert(exposicaoObjeto);
+        repository.save(exposicaoObjeto);
     }
 
     static void listarExposicoes(){
         List<Exposicoes> exposicoesList = new ArrayList<>();
-        exposicoesList = ExposicoesDAO.read();
+        exposicoesList = repository.findAll(Exposicoes.class);
         for(int i = 0; i<exposicoesList.size(); i++){
             System.out.println("\n Exposições");
             System.out.println("Nome \t Data de início \t Data final");
@@ -975,7 +968,7 @@ public class Main{
         exposicaoObjeto.setDataInicio(dataInicio);
         exposicaoObjeto.setDataFinal(dataFinal);
 
-        ExposicoesDAO.update(exposicaoObjeto);
+        repository.save(exposicaoObjeto);
     }
 
     static void excluirExposicao(){
@@ -990,7 +983,7 @@ public class Main{
 
         exposicaoObjeto.setNomeExposicao(nome);
 
-        ExposicoesDAO.delete(exposicaoObjeto);
+        repository.delete(exposicaoObjeto);
     }
 
     static void cadastrarColecao(){
@@ -1021,12 +1014,12 @@ public class Main{
         colecaoObjeto.setPessoaContato(pessoaContato);
         colecaoObjeto.setTipoColecao(tipo);
 
-        ColecaoDAO.insert(colecaoObjeto);
+        repository.save(colecaoObjeto);
     }
 
     static void listarColecoes(){
         List<Colecao> colecoesList = new ArrayList<>();
-        colecoesList = ColecaoDAO.read();
+        colecoesList = repository.findAll(Colecao.class);
         for(int i = 0; i<colecoesList.size(); i++){
             System.out.println("\n Coleções");
             System.out.println("Nome \t Descrição \t Endereço \t Telefone \t Pessoa para contato \t Tipo");
@@ -1067,7 +1060,7 @@ public class Main{
         colecaoObjeto.setPessoaContato(pessoaContato);
         colecaoObjeto.setTipoColecao(tipo);
 
-        ColecaoDAO.update(colecaoObjeto);
+        repository.save(colecaoObjeto);
     }
 
     static void excluirColecao(){
@@ -1082,7 +1075,7 @@ public class Main{
 
         colecaoObjeto.setNomeColecao(nome);
 
-        ColecaoDAO.delete(colecaoObjeto);
+        repository.delete(colecaoObjeto);
     }
 
     static void readForTipoAqui(){

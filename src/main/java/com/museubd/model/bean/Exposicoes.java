@@ -5,12 +5,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "exposicoes")
 @Data
-public class Exposicoes {
+public class Exposicoes implements Serializable {
 
     @Id
     private int id;

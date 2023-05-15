@@ -7,11 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "colecao")
 @Data
-public class Colecao {
+public class Colecao implements Serializable {
 
     @Id
     @Column(name = "nomeColecao")

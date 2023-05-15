@@ -6,12 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "emprestados")
 @Data
-public class Emprestados {
+public class Emprestados implements Serializable {
 
     @Id
     @Column(name = "num_obj4")
