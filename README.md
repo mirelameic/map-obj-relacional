@@ -2,13 +2,7 @@
 
 EP da disciplina Tópicos Especiais de Banco de Dados: criação de um modelo de Museu; utilizando Maven, ORM com hibernate.
 
-## Folder Structure
-
-- `src`: códigos fonte Java
-- `target`: arquivos compilados
-- `pom`: dependências maven
-
-## Project Structure (MVC Pattern)
+## Estrutura do projeto
 
 - `model`: camada que possui a lógica da aplicação
     - `bean`: classes que são as entidades do escopo do trabalho
