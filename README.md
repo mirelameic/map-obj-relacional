@@ -1,6 +1,6 @@
-# Museu - BD2
+# Museu - Tópicos Especiais de Banco de Dados
 
-EP da disciplina Banco de Dados 2: criação de um modelo de Museu; utilizando JDBC, Maven e PostgreSQL.
+EP da disciplina Tópicos Especiais de Banco de Dados: criação de um modelo de Museu; utilizando Maven, ORM com hibernate.
 
 ## Folder Structure
 
@@ -10,9 +10,8 @@ EP da disciplina Banco de Dados 2: criação de um modelo de Museu; utilizando J
 
 ## Project Structure (MVC Pattern)
 
-- `connection`: conexão com o PostgreSQL
 - `model`: camada que possui a lógica da aplicação
-    - `bean`: classes unidade do sistema
-    - `dao`: responsável por trocar informações com o SGBD e fornecer operações CRUD e de pesquisas
-- `main`: visualização/interação com o usuário
-- `bd`: tabelas e inserções do banco utilizado
+    - `bean`: classes que são as entidades do escopo do trabalho
+    - `repository`: responsável por trocar informações com o SGBD e fornecer operações CRUD e de pesquisas
+- `main`: manipulação livre do ORM
+- `test`: possuem os testes que atestam o funcionamento do código
