@@ -9,6 +9,10 @@ EP da disciplina Tópicos Especiais de Banco de Dados: criação de um modelo de
         - `bean/*.java`: classes que são as entidades do escopo do trabalho
         - `repository/Repository.java`: responsável por trocar informações com o SGBD e fornecer operações CRUD e de pesquisas
     - `Main.java`: manipulação livre do ORM
+
+- `src/main/resources/META-INF`
+    - persistence.xml: arquivo de configuração do Hibernate, JPA e banco de dados (H2) utilizado.
+
 - `src/test/com/museubd/model/repository`
     - `RepositoryTest.java`: possuem os testes que atestam o funcionamento do código
 
