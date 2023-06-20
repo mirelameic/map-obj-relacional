@@ -24,6 +24,7 @@ public class Repository {
             session.getTransaction().commit();
         } catch (Exception exception) {
             session.getTransaction().rollback();
+            throw exception;
         }
     }
 
@@ -37,7 +38,7 @@ public class Repository {
         }
     }
 
-    public Object find(Class clazz, Integer id) {
+    public Object find(Class clazz, Long id) {
         return session.find(clazz, id);
     }
 

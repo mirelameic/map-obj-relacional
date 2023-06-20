@@ -2,12 +2,10 @@ package com.museubd.model.bean;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "artista")
@@ -35,5 +33,8 @@ public class Artista implements Serializable {
 
     @Column(name = "dataMorte")
     private Date dataMorte;
+
+    @ManyToMany
+    private List<Obra> pinturas;
 
 }

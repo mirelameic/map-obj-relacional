@@ -15,7 +15,7 @@ public class Outros implements Serializable {
 
     @Id
     @Column(name = "num_obj3")
-    private int num_obj3;
+    private Long num_obj3;
 
     @Column(name = "tipo")
     private String tipo;
